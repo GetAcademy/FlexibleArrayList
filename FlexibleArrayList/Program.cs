@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using FlexibleArrayList.FlexibleArrayList;
 
 namespace FlexibleArrayList
 {
@@ -6,12 +8,26 @@ namespace FlexibleArrayList
     {
         static void Main(string[] args)
         {
-            var numbers = new FlexibleIntList();
+            //var numbers = new List<int>();
+            //var numbers = new FlexibleIntList();
+            var lists = new FlexibleList<FlexibleList<int>>();
             while (true)
             {
+                var listNo = AskForInt("Hvilken liste vil du legge til i? ");
+                while (lists.Count<listNo)
+                {
+                    lists.Add(new FlexibleList<int>());
+                }
+
+                var list = lists.Get(listNo-1);
+
                 var number = AskForInt("Tall: ");
-                numbers.AddNumber(number);
-                numbers.Show();
+                list.Add(number);
+                for(var i = 0; i < lists.Count; i++)
+                {
+                    Console.WriteLine($"Liste {i+1}");
+                    lists.Get(i).Show();
+                }
             }
         }
 
@@ -21,6 +37,13 @@ namespace FlexibleArrayList
             var numberTxt = Console.ReadLine();
             var number = Convert.ToInt32(numberTxt);
             return number;
+        }
+
+        private static string AskForString(string prompt)
+        {
+            Console.Write(prompt);
+            var txt = Console.ReadLine();
+            return txt;
         }
     }
 }
