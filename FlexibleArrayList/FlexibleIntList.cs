@@ -15,7 +15,6 @@ namespace FlexibleArrayList
             return _count;
         }
 
-
         public void Show()
         {
             for (var index = 0; index < _count; index++)
@@ -23,7 +22,6 @@ namespace FlexibleArrayList
                 var n = _numbers[index];
                 Console.Write(n + " ");
             }
-
             Console.WriteLine();
         }
 
